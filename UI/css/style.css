@@ -97,3 +97,18 @@ html{
   .active {
     display: block;
     }
+
+    .activee{
+        border: 1px solid #487eb0;
+        border: 1px solid #fff;
+        /* text-align: center; */
+        padding: 10px;
+      }
+      .nav-links:hover:not(.activee) {
+        /* background-color: #6a747e ;
+        border-radius: 10px; */
+        border-bottom:1px solid white;
+        padding: 5px;
+        
+      }
+	
