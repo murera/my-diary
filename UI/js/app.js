@@ -47,10 +47,9 @@ const closeDialog = () => {
 };
 
 
-
 let userUpdate=document.querySelector('.update-message');
-let rejectsession= document.querySelectorAll('.update-info')
-rejectsession.forEach((btn)=>
+let settings_updated= document.querySelectorAll('.update-info')
+settings_updated.forEach((btn)=>
 {
  
    btn.addEventListener('click',()=>

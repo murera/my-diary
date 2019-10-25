@@ -9,120 +9,71 @@
      href="../img/diary.jpg"/>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../img/css/all.css">
+    <!-- <script src="https://kit.fontawesome.com/5d74868167.js" crossorigin="anonymous"></script> -->
     <title>Log In</title>
-    <style>
-      
-
-    </style>
 </head>
 <body>
     <div id="page-container">
         <div id="content-wrap">
           <!-- all other page content -->
-          <nav class="navbar">
-              <span class="navbar-toggle" id="js-navbar-toggle">
-                  <i class="fas fa-bars"></i>
-              </span>
-              <span class="navbar-close" id="js-navbar-close">
-                <i class="fas fa-times"></i>
-              </span>
-          <a href="index.html" class="logo"><h6><i class="fas fa-address-book"></i> <i>my-diary</i></h6></a>
-          
-            <ul class="main-nav" id="js-menu">
-                <li>
-                    <a href="../index.html" class="nav-links">Home</a>
-                  </li>
-                 
-                  <li>
-                      <a href="Log-In.html" class="nav-links activee">Sign In</a>
-                    </li>
-                    
-                    <li>
-                      <a href="Sign-Up.html" class="nav-links" >Sign Up</a>
-                    </li>
-                    
-            </ul>
-          </nav>
-            <!-- end of header -->
-                   
-                  
-                   <div class="form">
-                        <form>
-                            <div>
-                                <img src="../img/user-icon.png" class="icon2 img-center"/>
-                                <div class="login-title to-center">
-                                    <label id="login-title">Sign In</label>
-                                </div>
-                            </div>
-                            <div class="box">
-                
-                                <input type="email" placeholder="Email" name="email" class="full-width" id="email" required>
-                                <br />
-                
-                                <input type="password" placeholder="Password" class="full-width"id="password" required>
-                                <div id="forgot-password">
-                                    <a href="./reset.html">Forgot Password?</a>
-                                </div>
-                                <br />
-                                 <a href="../html/admin/Manage users.html" class="button primary full-width">Log In</a>
-                                 
-            
-                            </div>
-                
-                        </form>
-                        <div class="sign-in to-center">New to My-Diary?</div>
-                
-                        <a href="Sign-Up.html" class="primary">
-                            <button class="to-center create button">
-                                Sign Up
-                            </button>
-                        </a>
-                    </div>
-          
-        </div>
-        <footer  id="footer" class="flex-rw">
-  
-            <ul class="footer-list-top">
-              <li>
-                <h5 class="footer-list-header">ABOUT MY-DIARY</h5></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor" >Learn To Write A best Diary</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor" >Know More About Us</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor" >Diary Jobs</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor" >Promosion</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor" >Events</a></li>
-              </ul>
-              <ul class="footer-list-top">
-              <li>
-                <h5 class="footer-list-header">OUR CUSTOMERS</h5></li>
-          
-          
-              <li><a href='#' class="generic-anchor footer-list-anchor">Mercedes-Benz</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor">Coca-Cola</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor">Microsoft</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor">Amazon</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor">Apple</a></li>
-            </ul>
-            <ul class="footer-list-top">
-              <li id='help'>
-                <h4 class="footer-list-header">QUICK LINKS</h4></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor" >Contact-us Home</a></li>
-              <li><a href='#' class="generic-anchor footer-list-anchor" >About-us</a></li>
-              <li id='find-a-store'><a href='#' class="generic-anchor footer-list-anchor" >Entries</a></li>
-              <li id='user-registration'><a href='#' class="generic-anchor footer-list-anchor" >Home</a></li>
-              <li id='order-tracking'><a href='#'  class="generic-anchor footer-list-anchor">Faq</a></li>
-            </ul>
-           
-            <section class="footer-bottom-section flex-rw">
-          <div class="footer-bottom-wrapper">   
-          <i class="fa fa-copyright" role="copyright">
-           
-          </i> 2019 My-Diary in <address class="footer-address" >Kigali, NY</address><span class="footer-bottom-rights"> - All Rights Reserved - </span>
+          <nav>
+              <div class="logo">
+                  <a href="../index.html" class="logo"><i class="fas fa-address-book"></i> <i><span style="color:#233245";>My</span></span>-diary</i></a>
               </div>
-              <div class="footer-bottom-wrapper">
-              <a href="#" class="generic-anchor" rel="nofollow">Terms</a> | <a href="#" class="generic-anchor" >Privacy</a>
+              <ul class="nav-links small">
+                  <li><a href="../index.html">home</a></li>
+                  <li><a href="./Sign-Up.html">sign Up</a></li>
+                  <li><a href="./Log-In.html" class="activee">sign in</a></li>    
+              </ul>
+              <div class="bars">
+                  <div class="line1"></div>
+                  <div class="line2"></div>
+                  <div class="line3"></div>
+              </div>
+          </nav>
+         
+            <!-- end of header -->
+            <div class="login-page">
+                <div class="form">
+                    <form class="login-form forms">
+                        <input  name="email" type="email" placeholder="email" required />
+                        <input  name="password" type="password" placeholder="password" required />
+                        <button type="submit" class="button"> <a href="./all entries.html">login</a> </button>
+                        <p class="message">Not registered?
+                                <a class="reg switch" href="./Sign-Up.html">Create an account</a>
+                        </p>
+                    </form>
                 </div>
-            </section>
-          </footer>
+            </div>    
+        </div>
+        <footer class="footer-distributed">
+          <div class="footer-right">
+             <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="far fa-envelope"></i>
+          </a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+          <div class="footer-left">
+            <p class="footer-links">
+              <a href="#">Home</a>
+              ·
+              <a href="#">Entry</a>
+              ·
+              <a href="#">Pricing</a>
+              ·
+              <a href="#">About</a>
+              ·
+              <a href="#">Faq</a>
+              ·
+              <a href="#">Contact</a>
+            </p>
+         
+            <p>&copy My-diary 2019 - All Right Reserved - <a href="#" id="footer-link">Terms | </a><a href="#">Privacy</a></p>
+          </div> 
+        </footer>
       </div>
       <script src="../js/app.js"></script> 
 </body>
