@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <link rel="icon" 
+     type="image/jpg" 
+     href="../img/diary.jpg" />
+     
+     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="../css/style.css"> -->
+<link rel="stylesheet" href="../img/css/all.css">
+<title>singleEntries</title> 
+<style>
+/* user drop menu style*/ 
+#user_menu {
+display:none;
+/* background:#E5E5E8; */
+}
+.user_menu2 ul {
+background:#E5E5E8;
+}
+.user_menu2 li {
+display:block;
+background-color:#ffffff;
+}
+</style>
+</head>
+<body>
+	<li style="list-style: none"><a href="#" onclick="profile_menu(); return false;"> <i class="fas fa-caret-down"></i></a>
+	</li>
+	
+		
+	<ul class="user_menu2" id="user_menu" style="display:none;">
+	<li> Link / text</li>
+	<li> Link / text</li>
+	<li> Link / text </li>
+	</ul>
+
+	<script>
+		function profile_menu() {
+ var d = document.getElementById('user_menu');
+ if(d.style.display == 'none') {
+   d.style.display = 'inline';
+ } else {
+   d.style.display = 'none';
+ }
+}
+	</script>       
+</body>
+</html>
