@@ -1,5 +1,5 @@
 const data = {
-	users: [],
-	 entries: [],
+  users: [],
+ entries: [],
 };
 module.exports = data;
