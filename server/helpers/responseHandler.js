@@ -5,7 +5,11 @@ class Response {
       data,
     });
 
-      error = (code, message) => ({ status: code, error: message })
+      error = (code, message) => ({ status: code, error: message });
+
+      display = (status, message, error, data, res) => res.status(status).json({
+        status, message, error, data,
+      });
 }
 
 export default new Response();

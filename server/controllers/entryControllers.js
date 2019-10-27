@@ -1,51 +1,31 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import entryModel from '../models/entryModels';
+import Response from '../helpers/responseHandler';
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 const entryController = {
   create(req, res) {
-    const {
-      status, message, error, data,
-    } = entryModel.addEntry(req);
-
-    res.status(status).json({
-      status, message, error, data,
-    });
+    const newEntry = entryModel.addEntry(req);
+    Response.display(newEntry.status, newEntry.message, newEntry.error, newEntry.data, res);
   },
   findOne(req, res) {
-    const {
-      status, message, error, data,
-    } = entryModel.getSpecificEntry (req, req.params.id);
-    res.status(status).json({
-      status, message, error, data,
-    });
+    const grabOne = entryModel.getSpecificEntry(req, req.params.id);
+    Response.display(grabOne.status, grabOne.message, grabOne.error, grabOne.data, res);
   },
   findAll(req, res) {
-    const {
-      status, message, error, data,
-    } = entryModel.getEntries(req);
-    res.status(status).json({
-      status, message, error, data,
-    });
+    const obtainAll = entryModel.getEntries(req);
+    Response.display(obtainAll.status, obtainAll.message, obtainAll.error, obtainAll.data, res);
   },
   delete(req, res) {
-    const {
-      status, message, error, data,
-    } = entryModel.remove(req);
-    res.status(status).json({
-      status, message, error, data,
-    });
+    const moveToTrash = entryModel.remove(req);
+    Response.display(moveToTrash.status, moveToTrash.message, moveToTrash.error, moveToTrash.data, res);
   },
   update(req, res) {
-    const {
-      status, message, error, data,
-    } = entryModel.modify(req);
-    res.status(status).json({
-      status, message, error, data,
-    });
+    const editEntry = entryModel.modify(req);
+    Response.display(editEntry.status, editEntry.message, editEntry.error, editEntry.data, res);
   },
 };
 export default entryController;

@@ -3,6 +3,7 @@ import env from 'dotenv';
 import jwt from 'jsonwebtoken';
 import data from '../data/data';
 import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND } from '../helpers/statusCode';
+import Response from '../helpers/responseHandler';
 
 env.config();
 const Helper = {
@@ -34,6 +35,7 @@ const Helper = {
       output = jwt.verify(token, process.env.SECRET_KEY);
     } catch (error) {
       return res.status(BAD_REQUEST).json({ status: BAD_REQUEST, error: 'Invalid Token' });
+      
     }
     const { id, email } = output;
     const grabUser = data.users.find((user) => user.email === email);
