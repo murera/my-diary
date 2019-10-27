@@ -54,7 +54,7 @@ class EntryModel {
 
   remove = (req) => {
     const { id } = req.params;
-    const getentry = this.findOne(req, id);
+    const getentry = this.getSpecificEntry(req, id);
     if (getentry.status !== REQUEST_SUCCEDED) { return Response.error(getentry.status, getentry.error); }
     const entry = getentry.data;
     if (entry) {
@@ -67,7 +67,7 @@ class EntryModel {
   modify = (req) => {
     const { id } = req.params;
     const details = req.body;
-    let fetchEntry = this.findOne(req, id);
+    let fetchEntry = this.getSpecificEntry(req, id);
     let index;
     if (fetchEntry.status !== REQUEST_SUCCEDED) { return Response.error(fetchEntry.status, fetchEntry.error); }
     const entry = fetchEntry.data;
