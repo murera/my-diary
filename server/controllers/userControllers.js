@@ -1,21 +1,15 @@
 import UserModel from '../models/userModels';
+import Response from '../helpers/responseHandler';
 
 const userController = {
   signup(req, res) {
-    const {
-      status, message, error, data,
-    } = UserModel.create(req.body);
-    res.status(status).json({
-      status, message, error, data,
-    });
+    const currentUser = UserModel.create(req.body);
+    Response.display(currentUser.status, currentUser.message, currentUser.error, currentUser.data, res);
   },
   login(req, res) {
-    const {
-      status, message, error, data,
-    } = UserModel.signIn(req.body);
-    res.status(status).json({
-      status, message, error, data,
-    });
+    
+    const signUser = UserModel.signIn(req.body);
+    Response.display(signUser.status, signUser.message, signUser.error, signUser.data, res);
   },
 };
 export default userController;
