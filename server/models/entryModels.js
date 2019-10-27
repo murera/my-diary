@@ -8,7 +8,7 @@ import {
 } from '../helpers/statusCode';
 
 class EntryModel {
-  create = (req) =>{
+  addEntry = (req) =>{
     const newEntry = { ...req.body };
     if (data.entries.length === 0) {
       newEntry.id = 1;
@@ -32,7 +32,7 @@ class EntryModel {
     return Response.success(RESOURCE_CREATED, 'entry successfully created', data.entries[data.entries.indexOf(newEntry)]);
   }
 
-  findOne = (req, id) => {
+  getSpecificEntry = (req, id) => {
     const entry = data.entries.find((entry) => entry.id == id);
 
     if (!entry) {
@@ -44,7 +44,7 @@ class EntryModel {
     return Response.success(REQUEST_SUCCEDED, 'single entry retrived successfully', entry);
   }
 
-  findAll = (req) =>{
+  getEntries = (req) =>{
     const entries = data.entries.filter((entry) => entry.ownerId === req.payload.id);
     if (entries.length < 1) {
 		  return Response.error(NOT_FOUND, 'you do not have any entries now');
@@ -52,7 +52,7 @@ class EntryModel {
     return Response.success(REQUEST_SUCCEDED, 'all entries retrived successfully', entries);
   }
 
-  delete = (req) => {
+  remove = (req) => {
     const { id } = req.params;
     const getentry = this.findOne(req, id);
     if (getentry.status !== REQUEST_SUCCEDED) { return Response.error(getentry.status, getentry.error); }
@@ -64,7 +64,7 @@ class EntryModel {
     }
   }
 
-  update = (req) => {
+  modify = (req) => {
     const { id } = req.params;
     const details = req.body;
     let fetchEntry = this.findOne(req, id);

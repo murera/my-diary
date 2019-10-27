@@ -9,7 +9,7 @@ const entryController = {
   create(req, res) {
     const {
       status, message, error, data,
-    } = entryModel.create(req);
+    } = entryModel.addEntry(req);
 
     res.status(status).json({
       status, message, error, data,
@@ -18,7 +18,7 @@ const entryController = {
   findOne(req, res) {
     const {
       status, message, error, data,
-    } = entryModel.findOne(req, req.params.id);
+    } = entryModel.getSpecificEntry (req, req.params.id);
     res.status(status).json({
       status, message, error, data,
     });
@@ -26,7 +26,7 @@ const entryController = {
   findAll(req, res) {
     const {
       status, message, error, data,
-    } = entryModel.findAll(req);
+    } = entryModel.getEntries(req);
     res.status(status).json({
       status, message, error, data,
     });
@@ -34,7 +34,7 @@ const entryController = {
   delete(req, res) {
     const {
       status, message, error, data,
-    } = entryModel.delete(req);
+    } = entryModel.remove(req);
     res.status(status).json({
       status, message, error, data,
     });
@@ -42,7 +42,7 @@ const entryController = {
   update(req, res) {
     const {
       status, message, error, data,
-    } = entryModel.update(req);
+    } = entryModel.modify(req);
     res.status(status).json({
       status, message, error, data,
     });
