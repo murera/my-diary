@@ -33,11 +33,11 @@ const testData = [
     password: 'Aa!12345',
   },
   {
-    email: 'bahatiroben@gmail.com',
+    email: 'amani@gmail.com',
 
   },
   {
-    email: 'bahati@prolite.com',
+    email: 'amani@gmail.com',
     password: 'a!12345',
   },
   {
