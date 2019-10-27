@@ -8,7 +8,7 @@ import {
 } from '../helpers/statusCode';
 
 class UserModel {
-signup = (details) => {
+create = (details) => {
   const { error } = joi.validate(
     details, schema.user,
 	  );
@@ -45,7 +45,7 @@ signup = (details) => {
 	  return Response.success(RESOURCE_CREATED, 'User created successfully', { token, ...output });
 }
 
-login = (userDetails) =>{
+signIn = (userDetails) =>{
 	  const {
 	    email, password,
 	  } = userDetails;

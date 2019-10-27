@@ -4,7 +4,7 @@ const userController = {
   signup(req, res) {
     const {
       status, message, error, data,
-    } = UserModel.signup(req.body);
+    } = UserModel.create(req.body);
     res.status(status).json({
       status, message, error, data,
     });
@@ -12,7 +12,7 @@ const userController = {
   login(req, res) {
     const {
       status, message, error, data,
-    } = UserModel.login(req.body);
+    } = UserModel.signIn(req.body);
     res.status(status).json({
       status, message, error, data,
     });
