@@ -8,13 +8,9 @@ import {
 } from '../helpers/statusCode';
 
 class EntryModel {
-  addEntry = (req) =>{
+  addEntry = (req) => {
     const newEntry = { ...req.body };
-    if (data.entries.length === 0) {
-      newEntry.id = 1;
-    } else {
-      newEntry.id = data.entries[data.entries.length - 1].id + 1;
-    }
+    newEntry.id = data.entries.length + 1;
     const {
       title, description,
     } = req.body;
@@ -44,7 +40,7 @@ class EntryModel {
     return Response.success(REQUEST_SUCCEDED, 'single entry retrived successfully', entry);
   }
 
-  getEntries = (req) =>{
+  getEntries = (req) => {
     const entries = data.entries.filter((entry) => entry.ownerId === req.payload.id);
     if (entries.length < 1) {
 		  return Response.error(NOT_FOUND, 'you do not have any entries now');
