@@ -4,7 +4,7 @@ import helper from '../middleware/helper';
 import schema from '../middleware/validation';
 import Response from '../helpers/responseHandler';
 import {
-  BAD_REQUEST, REQUEST_CONFLICT, RESOURCE_CREATED, NOT_FOUND, UNAUTHORIZED, SERVER_ERROR, REQUEST_SUCCEDED,
+  BAD_REQUEST, REQUEST_CONFLICT, RESOURCE_CREATED, NOT_FOUND, UNAUTHORIZED, REQUEST_SUCCEDED,
 } from '../helpers/statusCode';
 
 class UserModel {
@@ -60,13 +60,11 @@ signIn = (userDetails) =>{
 	  const {
 	    lastName, firstName, id, hashedPassword,
 	  } = me;
-	  try {
-	    if (!helper.checkThepassword(hashedPassword, password)) {
+	  
+	    if (!helper.checkThepassword(hashedPassword, password) || !me) {
 	      return Response.error(UNAUTHORIZED, 'The password is incorrect');
 	    }
-	  } catch (error) {
-	    return Response.error(SERVER_ERROR, 'internal error');
-	  }
+	  
 	  const payload = {
 	    id, firstName, lastName, email,
 	  };

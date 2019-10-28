@@ -3,13 +3,12 @@ import Response from '../helpers/responseHandler';
 
 const userController = {
   signup(req, res) {
-    const currentUser = UserModel.create(req.body);
-    Response.display(currentUser.status, currentUser.message, currentUser.error, currentUser.data, res);
+    const register = UserModel.create(req.body);
+    Response.display(register.status, register.message, register.error, register.data, res);
   },
   login(req, res) {
-    
-    const signUser = UserModel.signIn(req.body);
-    Response.display(signUser.status, signUser.message, signUser.error, signUser.data, res);
+    const makeNewUser = UserModel.signIn(req.body);
+    Response.display(makeNewUser.status, makeNewUser.message, makeNewUser.error, makeNewUser.data, res);
   },
 };
 export default userController;
