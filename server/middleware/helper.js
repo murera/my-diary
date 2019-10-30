@@ -2,7 +2,9 @@ import bcrypt from 'bcrypt';
 import env from 'dotenv';
 import jwt from 'jsonwebtoken';
 import data from '../data/data';
-import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND } from '../helpers/statusCode';
+import {
+  UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, FORBIDDEN,
+} from '../helpers/statusCode';
 import Response from '../helpers/responseHandler';
 
 env.config();
@@ -35,7 +37,6 @@ const Helper = {
       output = jwt.verify(token, process.env.SECRET_KEY);
     } catch (error) {
       return res.status(BAD_REQUEST).json({ status: BAD_REQUEST, error: 'Invalid Token' });
-      
     }
     const { id, email } = output;
     const grabUser = data.users.find((user) => user.email === email);
@@ -44,6 +45,19 @@ const Helper = {
     }
     req.token = token;
     req.payload = { id, email };
+    next();
+  },
+  permission(req, res, next) {
+    const myDiary = data.entries.find((d) => d.id == req.params.id);
+    console.log(myDiary);
+    console.log(req.params.id);
+    if (!myDiary) {
+      return res.status(NOT_FOUND).json({ status: NOT_FOUND, error: 'Entry Not foundd' });
+    }
+    if (myDiary.ownerId !== req.payload.id) {
+      console.log(req.params.id);
+      return res.status(NOT_FOUND).json({ status: NOT_FOUND, error: 'Forbidden' });  
+    }
     next();
   },
 };

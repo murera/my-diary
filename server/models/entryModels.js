@@ -3,6 +3,7 @@ import moment from 'moment';
 import data from '../data/data';
 import schema from '../middleware/validation';
 import Response from '../helpers/responseHandler';
+import getById from '../helpers/findone';
 import {
   BAD_REQUEST, RESOURCE_CREATED, NOT_FOUND, FORBIDDEN, REQUEST_SUCCEDED,
 } from '../helpers/statusCode';
@@ -29,15 +30,8 @@ class EntryModel {
   }
 
   getSpecificEntry = (req, id) => {
-    const entry = data.entries.find((entry) => entry.id == id);
-
-    if (!entry) {
-      return Response.error(NOT_FOUND, 'Entry Not found');
-    }
-    if (entry.ownerId !== req.payload.id) {
-      return Response.error(FORBIDDEN, 'Forbidden');
-    }
-    return Response.success(REQUEST_SUCCEDED, 'single entry retrived successfully', entry);
+    const getOne = getById(id);
+    return Response.success(REQUEST_SUCCEDED, 'single entry retrived successfully', getOne);
   }
 
   getEntries = (req) => {
@@ -50,35 +44,31 @@ class EntryModel {
 
   remove = (req) => {
     const { id } = req.params;
-    const getentry = this.getSpecificEntry(req, id);
-    if (getentry.status !== REQUEST_SUCCEDED) { return Response.error(getentry.status, getentry.error); }
-    const entry = getentry.data;
-    if (entry) {
-      const index = data.entries.indexOf(entry);
+    const getentry = getById(id);
+    if (getentry) {
+      const index = data.entries.indexOf(getentry);
       data.entries.splice(index, 1);
       return Response.success(REQUEST_SUCCEDED, 'entry deleted successfully', []);
     }
   }
 
   modify = (req) => {
-    const { id } = req.params;
     const details = req.body;
-    let fetchEntry = this.getSpecificEntry(req, id);
+    const { id } = req.params;
+    let fetchEntry = getById(id);
     let index;
-    if (fetchEntry.status !== REQUEST_SUCCEDED) { return Response.error(fetchEntry.status, fetchEntry.error); }
-    const entry = fetchEntry.data;
-    if (entry) {
-      index = data.entries.indexOf(entry);
+    if (fetchEntry) {
+      index = data.entries.indexOf(fetchEntry);
       for (let prop in details) {
-        for (let sameprop in entry) {
+        for (let sameprop in fetchEntry) {
           if (prop === sameprop) {
-            entry[prop] = details[sameprop];
+            fetchEntry[prop] = details[sameprop];
           }
         }
       }
       const {
         title, description,
-      } = entry;
+      } = fetchEntry;
       const { error } = joi.validate({
         title, description,
       }, schema.entry);
@@ -87,9 +77,9 @@ class EntryModel {
         return Response.error(BAD_REQUEST, error.details[0].message);
 			  }
 
-      data.entries.splice(index, 1, entry);
+      data.entries.splice(index, 1, fetchEntry);
       return Response.success(REQUEST_SUCCEDED, 'entry successfully edited', data.entries[index]);
     }
   }
 }
-module.exports = new EntryModel();
+export default new EntryModel();
