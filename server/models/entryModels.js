@@ -5,7 +5,7 @@ import schema from '../middleware/validation';
 import Response from '../helpers/responseHandler';
 import getById from '../helpers/findone';
 import {
-  BAD_REQUEST, RESOURCE_CREATED, NOT_FOUND, FORBIDDEN, REQUEST_SUCCEDED,
+  BAD_REQUEST, RESOURCE_CREATED, NOT_FOUND, REQUEST_SUCCEDED,
 } from '../helpers/statusCode';
 
 class EntryModel {

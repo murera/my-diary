@@ -5,7 +5,6 @@ import data from '../data/data';
 import {
   UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, FORBIDDEN,
 } from '../helpers/statusCode';
-import Response from '../helpers/responseHandler';
 
 env.config();
 const Helper = {
@@ -49,14 +48,13 @@ const Helper = {
   },
   permission(req, res, next) {
     const myDiary = data.entries.find((d) => d.id == req.params.id);
-    console.log(myDiary);
-    console.log(req.params.id);
+  
     if (!myDiary) {
-      return res.status(NOT_FOUND).json({ status: NOT_FOUND, error: 'Entry Not foundd' });
+      return res.status(NOT_FOUND).json({ status: NOT_FOUND, error: 'Entry Not found' });
     }
     if (myDiary.ownerId !== req.payload.id) {
-      console.log(req.params.id);
-      return res.status(NOT_FOUND).json({ status: NOT_FOUND, error: 'Forbidden' });  
+  
+      return res.status(FORBIDDEN).json({ status: FORBIDDEN, error: 'Forbidden' });  
     }
     next();
   },
