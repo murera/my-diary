@@ -75,4 +75,4 @@ signIn = (userDetails) =>{
 	  }
 }
 }
-module.exports = new UserModel();
+export default new UserModel();
