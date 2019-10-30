@@ -1,18 +1,20 @@
 import express from 'express';
-// import swaggerUi from 'swagger-ui-express';
+import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import entryRoute from './routes/entryRoutes';
 import userRoute from './routes/userRoutes';
 import properJson from './middleware/properJson';
-// const swaggerDocument = require('../swagger.json');
+
+const swaggerDocument = require('../swagger.json');
+
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const app = express();
 // middle wares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use((request, response, next) => {
   response.header('Access-Control-Allow-Origin', '*');
   response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
