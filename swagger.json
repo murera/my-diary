@@ -1,0 +1,496 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "MyDiary is an online journal where users can pen down their thoughts and feelings",
+		"version": "1.0.0",
+		"title": "MY-DIARY",
+		"termsOfService": "http://swagger.io/terms/",
+		"contact": {
+			"email": "amanidiope@gmail.com"
+		},
+		"license": {
+			"name": "MIT",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+		}
+	},
+	"host": "localhost:7000",
+	"basePath": "/api/v1",
+	"tags": [
+		{
+			"name": "user",
+			"description":"signup,login"
+		},
+		{
+			"name": "entries",
+			"description":"create entry, get all entries, get specific entry, update entry, delete entry"
+		}
+		
+		
+	],
+	"schemes": [
+
+		"http"
+	],
+	"paths": {
+		"/auth/signup": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "Create user account",
+				"description": "this endpoint will will be used to create a new account",
+				"operationId": "adduser",
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "User object that needed to create account",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/signup"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "User created successfully"
+					},
+					"400": {
+						"description": "bad request"
+					},
+					"409": {
+						"description": "User already exist"
+					},
+					"500": {
+						"description": "Server error"
+					}
+				}
+			}
+
+		},
+		"/auth/signin": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "user signin",
+				"description": "this is endpoint where a registered user can be able to sign in",
+				"operationId": "signin",
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "user's object that is needed to sign in a user'",
+						"required": true,
+						"schema": {
+	 
+						"$ref": "#/definitions/signin"
+							
+						}
+					}
+					
+				],
+				"responses": {
+					"200": {
+						"description": "sign in successful"
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "The password is incorrect"
+					},		
+					"500": {
+						"description": "internal error"
+					}			
+				}
+			}
+		},
+		"/entries ": {
+			"post": {
+			  "tags": [
+				"entries"
+			  ],
+			  "summary": "Create an entry",
+			  "description": "",
+			  "operationId": "create entry",
+			  "produces": [
+				"application/json",
+				"application/xml"
+			  ],
+			  "parameters": [
+				{
+				  "name": "authorization",
+				  "in": "header",
+				  "required": true,
+				  "type": "string",
+				  "description": "The token to provide in this box must start with bearerHeader and then space"
+				 },
+				{
+				  "in": "body",
+				  "name": "body",
+				  "description": "Created entry object",
+				  "required": true,
+				  "schema": {
+					"$ref": "#/definitions/entry"
+				  }
+				}
+			  ],
+			  "responses": {
+				"201": {
+				  "description": "entry created successfully",
+				  "schema":{
+					"type":"object",
+					"example": {
+					  "status": 201,
+					  "messages": "entry successfully created",
+					  "data": {
+						  "title": "amanipro",
+						  "description": "my first entry in my life ",
+						  "id": 1,
+						  "createdOn": "2019-10-12T19:12:09.647Z",
+						  "ownerId": 1
+					  }
+					}
+				  }
+				},
+				"400": {
+					"description": "Bad request"
+				},
+				"401": {
+					"description": "Not Authorized"
+				},
+				"500": {
+					"description": "Internal server Error"
+				}
+			  }
+			}
+		  },
+		  "/entries": {
+			"get": {
+			  "tags": [
+				"entries"
+			  ],
+			  "summary": "View all entries",
+			  "description": "",
+			  "operationId": "get all entries",
+			  "produces": [
+				"application/json"
+			  ],
+			  "parameters": [
+				{
+				  "name": "authorization",
+				  "in": "header",
+				  "required": true,
+				  "type": "string",
+				  "description": "The token to provide in this box must start with bearerHeader then space"
+				 }
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "List of all entries",
+				  "schema": {
+					"type": "object",
+					"example": {
+						"status": 200,
+						"data": [
+						  {
+							"title": "today's mood",
+							"description": "stringddddddddddddddddddddddddddddddddd",
+							"id": 1,
+							"createdOn": "2019-10-13T13:00:56.515Z",
+							"ownerId": 1
+						  },
+						  {
+							"title": "string",
+							"description": "stringddddddddddddddddddddddddddddddddd",
+							"id": 2,
+							"createdOn": "2019-10-13T13:01:02.249Z",
+							"ownerId": 1
+						  }
+						]
+					}
+				  }
+				},
+				"400":{
+					"description": "Bad Request"
+				  },
+				"401":{
+				  "description": "Not Authorized"
+				},
+				"404":{
+					"description": "you do not have any entries now"
+				  }
+			  }
+			}
+		  },
+		  "/entries/{id}  ": {
+			"get": {
+			  "tags": [
+				"entries"
+			  ],
+			  "summary": "view a specific entry",
+			  "description": " ",
+			  "operationId": "getEntry",
+			  "produces": [
+				"application/json"
+			  ],
+			  "parameters": [
+				{
+				  "name": "id",
+				  "in": "path",
+				  "description": "ID of an entry",
+				  "required": true,
+				  "type": "integer",
+				  "format": "int64"
+				},
+				{
+				  "name": "authorization",
+				  "in": "header",
+				  "required": true,
+				  "type": "string",
+				  "description": "The token to provide in this box must start with bearerHeader then space"
+				 }
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "specific entry",
+				  "schema": {
+					"type": "object",
+					"example": {
+						"status": 200,
+						"data": 
+						  {
+							"title": "string",
+							"description": "stringddddddddddddddddddddddddddddddddd",
+							"id": 1,
+							"createdOn": "2019-10-13T13:00:56.515Z",
+							"ownerId": 1
+						  }
+					}
+				  }
+				},
+				"400":{
+					"description": "Bad Request"
+				  },
+				"401":{
+				  "description": "Not Authorized"
+				},
+				"403":{
+					"description": "Forbidden"
+				  },
+				  "404":{
+					"description": "Entry Not Found"
+				  }
+				  
+
+			  }
+			}
+		  },
+		  "/entries/{id}": {
+			"delete": {
+			  "tags": [
+				"entries"
+			  ],
+			  "summary": "delete an entry",
+			  "description": "",
+			  "operationId": "deleteEntry",
+			  "produces": [
+				"application/json"
+			  ],
+			  "parameters": [
+				{
+					"in": "path",
+					"name": "id",
+					"description": "delete an entry",
+					"required": true
+				  },
+				{
+				  "name": "authorization",
+				  "in": "header",
+				  "required": true,
+				  "type": "string",
+				  "description": "The token to provide in this box must start with bearerHeader then space"
+				 }
+				
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "delete an entry",
+				  "schema":{
+					"example":{
+						"status": 200,
+						"data": {
+						  "message": "entry deleted successfully"
+						}
+					}
+				  }
+				},
+				"400":{
+					"description": "Bad Request"
+				  },
+				"401":{
+				  "description": "Not Authorized"
+				},
+				"403":{
+					"description": "Forbidden"
+				  },
+				  "404":{
+					"description": "Entry Not Found"
+				  }
+			  }
+			}
+		  },
+		  "/entries/{id} ": {
+			"patch": {
+			  "tags": [
+				"entries"
+			  ],
+			  "summary": "update an entry",
+			  "description": "",
+			  "operationId": "updateEntry",
+			  "produces": [
+				"application/json"
+			  ],
+			  "parameters": [
+				{
+				  "name": "id",
+				  "in": "path",
+				  "description": "ID of an entry",
+				  "required": true,
+				  "type": "integer",
+				  "format": "int64"
+				},
+				{
+				  "name": "authorization",
+				  "in": "header",
+				  "required": true,
+				  "type": "string",
+				  "description": "The token to provide in this box must start with bearerHeader then space"
+				 },
+				 {
+					"in": "body",
+					"name": "body",
+					"description": "Created an entry object",
+					"required": true,
+					"schema": {
+					  "$ref": "#/definitions/entry"
+					}
+				  }
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "User edit his entry",
+				  "schema":{
+					"type": "object",
+					"example":{
+						"status": 201,
+						"message": "entry successfully edited",
+						"data": {
+						  "title": "miguel miguel miguel",
+						  "description": "amani amani amani amani",
+						  "id": 4,
+						  "createdOn": "2019-10-13T13:01:06.042Z",
+						  "ownerId": 1
+						}
+					}
+				  }
+				},
+				"400":{
+					"description": "Bad Request"
+				  },
+				"401":{
+				  "description": "Not Authorized"
+				},
+				"403":{
+					"description": "Forbidden"
+				  },
+				  "404":{
+					"description": "Entry Not Found"
+				  }
+			  }
+			}
+		  }
+	   
+		
+	},
+
+	"definitions": {
+		"signin": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		
+		"signup": {
+			"type": "object",
+			"properties": {
+				"firstName": {
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+				
+				
+				
+				
+			},
+			"xml": {
+				"name": "User"
+			}
+		},
+		"entry": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+
+			}
+
+		}
+		
+		
+	},
+	"externalDocs": {
+		"description": "Find out more about Swagger",
+		"url": "http://swagger.io"
+	}
+
+}
