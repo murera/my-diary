@@ -35,7 +35,9 @@ class EntryModel {
   }
 
   getEntries = (req) => {
-    const entries = data.entries.filter((entry) => entry.ownerId === req.payload.id);
+    const sortedEntries = data.entries.sort((a, b) => (new Date(b.createdOn)).getTime()
+      - (new Date(a.createdOn).getTime()));
+    const entries = sortedEntries.filter((entry) => entry.ownerId === req.payload.id);
     if (entries.length < 1) {
 		  return Response.error(NOT_FOUND, 'you do not have any entries now');
 	  }
