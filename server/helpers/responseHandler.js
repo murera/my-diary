@@ -1,15 +1,16 @@
-class Response {
-    success = (status, message, data) => ({
-      status,
+
+class Handler {
+    success = (code, message, payload, res) => res.status(code).json({
+      status: code,
       message,
-      data,
+      data: payload,
     });
-
-      error = (code, message) => ({ status: code, error: message });
-
-      display = (status, message, error, data, res) => res.status(status).json({
-        status, message, error, data,
-      });
-}
-
-export default new Response();
+  
+      error = (code, message, res) => res.status(code).json({
+        status: code,
+        error: message,
+      })
+  }
+  
+  export default new Handler();
+  
