@@ -5,7 +5,6 @@ import app from '../index';
 import { testData } from '../helpers/testData';
 import Database from '../models/database';
 
-const { expect } = chai;
 chai.use(chaiHttp);
 chai.should();
 
