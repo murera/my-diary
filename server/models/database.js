@@ -7,13 +7,15 @@ dotenv.config();
 class Database {
 	constructor() {
 		this.pool = new Pool({ connectionString: process.env.DATABASE_URL });
+		this.pool.on('connect', () => {
+			console.log('connected to the db');
+		  });
 		this.connect = async () => this.pool.connect();
 		this.initialize();
 	}
 
 	users = `CREATE TABLE IF NOT EXISTS users (
 		id serial PRIMARY KEY UNIQUE,
-		email TEXT NOT NULL,
 		firstName TEXT NOT NULL,
 		lastName TEXT NOT NULL,
 		email TEXT NOT NULL UNIQUE,
@@ -22,11 +24,18 @@ class Database {
 		createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	  )`;
 
-	 
+	  entries = `CREATE TABLE IF NOT EXISTS entries (
+		id serial PRIMARY KEY,
+		title TEXT NOT NULL,
+		
+		description TEXT,
+		ownerId INTEGER REFERENCES users (id) ON DELETE CASCADE,
+		createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	  )`;
 
 	  initialize = async () => {
 	  	await this.execute(this.users);
-	  	
+	  	await this.execute(this.entries);
 	  	
 	  }
 

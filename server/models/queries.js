@@ -6,7 +6,9 @@ dotenv.config();
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 });
-
+pool.on('connect', () => {
+	console.log('connected to the db');
+  });
 const execute = async (text, parameters = []) => {
 	const result = await pool.query(text, parameters);
 	return result.rows || result;
