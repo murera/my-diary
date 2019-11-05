@@ -9,7 +9,7 @@ import Database from '../models/database';
 
 dotenv.config();
 const isEmployee = async (req, res, next) => {
-  const token = req.header('x-auth-token');
+  const token = req.header('authorization');
   if (!token) {
     return ResponseHandler.error(UNAUTHORIZED, 'No access token found!', res);
   }
