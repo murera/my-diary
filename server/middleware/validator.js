@@ -51,7 +51,7 @@ const entryValidator = (req, res, next) => {
   next();
  };
 const permission = async (req, res, next) => {
-  const employeeToken = req.header('x-auth-token').trim();
+  const employeeToken = req.header('authorization').trim();
   let  {entryId} = req.params;
   if (isNaN(entryId)) {
     return ResponseHandler.error(BAD_REQUEST, 'entryId must be a number!', res);
