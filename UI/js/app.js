@@ -62,6 +62,29 @@ settings_updated.forEach((btn)=>
 })
 
 
+var time, alarm, currentH, currentM,
+				activeAlarm = false;
+			
+			function addMinSecVals(id) {
+			  var select = id;
+			  var min = 59;
+			  
+			  for (i = 0; i <= min; i++) {
+				
+				select.options[select.options.length] = new Option(i < 10 ? "0" + i : i, i < 10 ? "0" + i : i);
+			  }
+			}
+			function addHours(id) {
+			  var select = id;
+			  var hour = 12;
+			  
+			  for (i = 0; i <= hour; i++) {
+				select.options[select.options.length] = new Option(i < 10 ? "0" + i : i, i);
+			  }
+			}
+			addMinSecVals(minutes);
+			addMinSecVals(seconds);
+			addHours(hours);
 
 
 

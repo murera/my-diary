@@ -15,7 +15,7 @@
 	<title>user | settings</title>
 
 <style>
- 
+
 </style>
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -71,15 +71,26 @@
 						<option value="3">Kinyarwanda</option>
 					  </select>
 				   </div>
-				   <div   style = "margin-top: 30px;" class="row">
+				   <div  id="setReminder" class="row">
 					  <div class="col-12">
-						<h3>Enable notifications</h3>
-						<span class="notification-toggle">
-						  <label for="switch">Off</label>
-						  <label for="switch">On</label>
-						  <input type="checkbox" id="switch"/>
-						  <span class="notification-switch"></span>
-						</span>
+						<div class="table">
+							<div class="cell">
+							  <h1 id="clock" class="clock"></h1>
+							  
+							  <select id="hours"></select>
+							  <select id="minutes"></select>
+							  <select id="seconds"></select>
+							  <select id="ampm">
+								<option value="AM">AM</option>
+								<option value="PM">PM</option>
+							  </select>
+							  
+							  <p>
+						
+								<button id="startstop">Set Reminder</button>
+							  </p>
+							</div>
+						  </div> 
 					  </div>
 					</div>
 					<div class="share-entries" >
@@ -150,7 +161,8 @@
             </div>
             
           </footer>
-        <script src="./../js/app.js"></script>
+		<script src="./../js/app.js"></script>
+		
 	</body>
 
 </html>
