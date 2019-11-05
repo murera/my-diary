@@ -10,7 +10,7 @@ class EntryController {
     static createEntry = async (req, res) => {
       try {
         let { title, description } = req.body;
-        let token = req.header('authorization');
+        const token = req.header('authorization');
         const owner = grabEmployeeIdFromToken(token, res);
         const createEntry = 'INSERT INTO entries (title, description, ownerId) VALUES ($1, $2, $3) RETURNING *';
         const entryCreated = await Database.execute(createEntry,
@@ -23,7 +23,7 @@ class EntryController {
 
     static getMyEntries = async (req, res) => {
       try {
-        const token = req.header('authorisation');
+        const token = req.header('authorization');
         const authorId = grabEmployeeIdFromToken(token, res);
         const myEntries = 'SELECT * FROM entries WHERE ownerId = $1 ORDER BY createdOn DESC ';
         const getMyEntries = await Database.execute(myEntries, [authorId]);

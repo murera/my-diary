@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.use(bodyParse.json());
 // router.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
-// router.use('/api/v2', properJson, entryRoute);
+router.use('/api/v2', properJson, entryRoute);
 router.use('/api/v2/auth', properJson, userRoute);
 
 router.use('/', (req, res) => {
