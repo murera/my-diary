@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 const {
-  createEntry,
+  createEntry, getMyEntries,
 } = EntryController;
 
 router.post('/entries',
@@ -16,4 +16,7 @@ router.post('/entries',
   isUserExist,
   entryValidator,
   createEntry);
+router.get('/entries',
+  isUserExist,
+  getMyEntries);
 export default router;
