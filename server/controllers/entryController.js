@@ -27,8 +27,18 @@ class EntryController {
         const authorId = grabEmployeeIdFromToken(token, res);
         const myEntries = 'SELECT * FROM entries WHERE ownerId = $1 ORDER BY createdOn DESC ';
         const getMyEntries = await Database.execute(myEntries, [authorId]);
-        if (getMyEntries.length === 0) {return ResponseHandler.error(NOT_FOUND, 'You do not have any entry now!', res);}
+        if (getMyEntries.length === 0) { return ResponseHandler.error(NOT_FOUND, 'You do not have any entry now!', res); }
         return ResponseHandler.success(REQUEST_SUCCEDED, 'Your entries returned successfully', getMyEntries, res);
+      } catch (e) {
+        return ResponseHandler.error(SERVER_ERROR, `Internal server error occured: ${e} `, res);
+      }
+    };
+
+    static getSpeciEntry = async (req, res) => {
+      try {
+        const getSingleEntry = 'SELECT * FROM entries WHERE id = $1';
+        const EntryFetched = await Database.execute(getSingleEntry, [req.params.entryId]);
+        return ResponseHandler.success(REQUEST_SUCCEDED, 'single entry successfully retrived', EntryFetched[0], res);
       } catch (e) {
         return ResponseHandler.error(SERVER_ERROR, `Internal server error occured: ${e} `, res);
       }
