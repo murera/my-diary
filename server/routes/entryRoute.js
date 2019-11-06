@@ -23,4 +23,9 @@ router.get('/entries',
   isUserExist,
   permission,
   getSpeciEntry);
+  router.patch('/entries/:entryId',
+  isUserExist,
+  permission,
+  entryValidator,
+  editEntry);
 export default router;
