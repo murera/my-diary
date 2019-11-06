@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 const {
-  createEntry, getMyEntries, getSpeciEntry,
+  createEntry, getMyEntries, getSpeciEntry, editEntry,
 } = EntryController;
 
 router.post('/entries',
