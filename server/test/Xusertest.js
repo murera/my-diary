@@ -131,7 +131,6 @@ describe('User Login ', () => {
 
   // incorrect password
   it('it should not login user with wrong password', (done) => {
-
     chai.request(app)
       .post('/api/v2/auth/signin')
       .send(testData[8])
@@ -162,35 +161,34 @@ describe('User Login ', () => {
 
 
 describe('POST api/v2/auth/signup when endpoint does not exist', () => {
-it('should return incorrect route', (done) => {
-chai.request(app)
-.post('/api/v2')
-.set('Accept', 'application/json')
-.end((err, res) => {
-  res.should.have.status(404);
-  res.body.should.be.an('object');
-  res.body.should.have.property('status').eql(404);
-  res.body.should.have.property('error');
-  res.body.should.have.property('error').eql('Incorrect route!');
-  done();
-});
-});
+  it('should return incorrect route', (done) => {
+    chai.request(app)
+      .post('/api/v2')
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error');
+        res.body.should.have.property('error').eql('Incorrect route!');
+        done();
+      });
+  });
 });
 describe('POST api/v2/auth/signup when JSON format is incorrect', () => {
-it('should return incorrect JSON format', (done) => {
-chai.request(app)
-.post('/api/v2/auth/signup')
-.set('Accept', 'application/json')
-.set('Content-Type', 'application/json')
-.send('{"invalidJson"}')
-.end((err, res) => {
-  res.should.have.status(400);
-  res.body.should.be.an('object');
-  res.body.should.have.property('status').eql(400);
-  res.body.should.have.property('error');
-  res.body.should.have.property('error').eql('invalid JSON format!');
-  done();
+  it('should return incorrect JSON format', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send('{"invalidJson"}')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
+        res.body.should.have.property('error').eql('invalid JSON format!');
+        done();
+      });
+  });
 });
-});
-});
-

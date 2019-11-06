@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 const {
-  createEntry, getMyEntries, getSpeciEntry, editEntry,
+  createEntry, getMyEntries, getSpeciEntry, editEntry, removeEntry,
 } = EntryController;
 
 router.post('/entries',
@@ -28,4 +28,8 @@ router.get('/entries',
   permission,
   entryValidator,
   editEntry);
+  router.delete('/entries/:entryId',
+  isUserExist,
+  permission,
+  removeEntry);
 export default router;

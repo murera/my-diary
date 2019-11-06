@@ -62,6 +62,21 @@ class EntryController {
         return ResponseHandler.error(SERVER_ERROR, `Internal server error occured: ${e} `, res);
       }
     };
+
+    static removeEntry = async (req, res) => {
+      try {
+        let { entryId } = req.params;
+        const deleteEntry = 'DELETE FROM entries WHERE id = $1';
+        await Database.execute(deleteEntry, [entryId]);
+        const checkIfDeleted = 'SELECT * FROM entries WHERE id = $1';
+        const query = await Database.execute(checkIfDeleted, [entryId]);
+        if (query.length === 0) {
+          return ResponseHandler.success(REQUEST_SUCCEDED, 'entry successfully deleted', [], res);
+        }
+      } catch (e) {
+        return ResponseHandler.error(SERVER_ERROR, `Internal server error occured: ${e} `, res);
+      }
+    };
 }
 
 export default EntryController;
