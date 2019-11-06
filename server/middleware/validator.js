@@ -58,7 +58,7 @@ const permission = async (req, res, next) => {
   }
   const authorId = grabEmployeeIdFromToken(employeeToken, res);
   if (!(getOne[0].ownerid == authorId)) {
-    return ResponseHandler.error(FORBIDDEN, ' you are not the owner this entry', res);
+    return ResponseHandler.error(FORBIDDEN, 'you are not the owner of this entry', res);
   }
   next();
 };
