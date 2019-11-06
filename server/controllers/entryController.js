@@ -53,10 +53,10 @@ class EntryController {
 
         const current = await Database.execute(getCurrent, [entryId]);
         const { title, description } = current[0];
-        const t = req.body.title || title;
+        const updatedTitle = req.body.title || title;
 
-        const d = req.body.description || description;
-        const updated = await Database.execute(update, [t, d, entryId]);
+        const updateDescription = req.body.description || description;
+        const updated = await Database.execute(update, [updatedTitle, updateDescription, entryId]);
         return ResponseHandler.success(REQUEST_SUCCEDED, 'entry successfully edited', updated[0], res);
       } catch (e) {
         return ResponseHandler.error(SERVER_ERROR, `Internal server error occured: ${e} `, res);
