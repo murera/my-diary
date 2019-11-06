@@ -39,7 +39,7 @@ class UserController {
         const row = await Database.execute(logInUser, [email]);
         const OutputDeatils = row[0];
         if (OutputDeatils && comparePassword(password, row[0].password)) {
-          const token = generateAuthToken(row[0].id, row[0].email);
+          const token = generateAuthToken(row[0]);
           const {
             id, firstname, lastname, createdon,
           } = OutputDeatils;
