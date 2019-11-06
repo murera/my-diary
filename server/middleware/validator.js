@@ -42,12 +42,6 @@ const entryValidator = (req, res, next) => {
   if (result.error !== null) {
     return ResponseHandler.error(BAD_REQUEST, `${result.error.details[0].message}`, res);
   }
-  
- const {title, description} = req.body;
-  if (!isNaN(title)
-        || !isNaN(description)) {
-    return ResponseHandler.error(BAD_REQUEST, 'title or description can\'t be a number!', res);
-  }
   next();
  };
 const permission = async (req, res, next) => {
@@ -64,8 +58,6 @@ const permission = async (req, res, next) => {
   }
   const authorId = grabEmployeeIdFromToken(employeeToken, res);
   if (!(getOne[0].ownerid == authorId)) {
-    console.log(getOne[0].ownerid);
-    console.log(authorId);
     return ResponseHandler.error(FORBIDDEN, ' you are not the owner this entry', res);
   }
   next();
