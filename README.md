@@ -1,7 +1,7 @@
 
 
 
-[![Build Status](https://travis-ci.org/murera/my-diary.svg?branch=develop)](https://travis-ci.org/murera/my-diary) [![Coverage Status](https://coveralls.io/repos/github/murera/my-diary/badge.svg?branch=ch-update-readme-169384003)](https://coveralls.io/github/murera/my-diary?branch=ch-update-readme-169384003) [![Maintainability](https://api.codeclimate.com/v1/badges/a86db2b9e80d55d5b39d/maintainability)](https://codeclimate.com/github/murera/my-diary/maintainability)
+[![Build Status](https://travis-ci.org/murera/my-diary.svg?branch=develop)](https://travis-ci.org/murera/my-diary) [![Coverage Status](https://coveralls.io/repos/github/murera/my-diary/badge.svg?branch=develop)](https://coveralls.io/github/murera/my-diary?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/a86db2b9e80d55d5b39d/maintainability)](https://codeclimate.com/github/murera/my-diary/maintainability)
 
 # My-Diary
 
