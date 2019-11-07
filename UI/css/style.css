@@ -1388,21 +1388,23 @@ span.config_title:after {
 
 .change-profile {
   width: 100%;
+  text-align: center;
+  background: #2196F3;
 }
 .change-profile div {
   width: 100%;
 }
 .change-profile label {
   margin: 0;
+
   border: none;
   border-radius: 2px;
-  padding: 2px 4px;
-  background: #2196F3;
+  /* padding: 2px 2px; */
   color: white;
   font-size: 16px;
   transition: all 150ms ease-out;
 }
-.change-profile label:hover{
+.change-profile:hover{
   background: #233245;
   cursor: pointer;
  
