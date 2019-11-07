@@ -27,10 +27,7 @@
 		
 		
 	],
-	"schemes": [
-
-		"http"
-	],
+	"schemes": ["http", "https"],
 	"paths": {
 		"/auth/signup": {
 			"post": {
