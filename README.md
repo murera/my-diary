@@ -11,15 +11,16 @@ Here is UI template for this project on github  [link](https://murera.github.io/
 
 #### Here is a list of all API Endpoints that you will find:
 
-| Method        | Endpoint                 | Description|
-| ------------- | --------------------------|------------|
-| POST           |`/auth/signup`   |User create an account|
-| POST          | `/auth/signin`   |Sign in a user |
-| POST  |`/entries` |User create an entry|
-| GET        | `/entries `   | user get all entries|
-| GET | `/entries/<:entry-id>`   |user get a specific entry|
-| DELETE          | `/entries/<:entry-id>`   |user delete his entry|
-| PATCH       | `/entries/:<entry-id>`   |user modify his entry|
+| HTTP Method | Endpoint                      | Description                                     |
+| :---------- | :-------------------------    | :---------------------------------------------- |
+| POST        | /api/v2/auth/signup           | User can create an account                      |
+| POST        | /api/v2/auth/signin           | User can sign in                                |
+| POST        | /api/v2/entries               | User can add an entry in diary                  |
+| PATCH       | /api/v2//entries/<:entry-id:> | user can modify entry in diary                  |
+| GET         | /api/v2/entries               | User can get all entries in his/her diary       |
+| GET         | /api//v2/entries/<:entry-id:> | User can get specific entry in his/her diary    |
+| DELETE      | /api//v2/entries/<:entry-id:> | User can delete specific entry in his/her diary |                                                                   
+
 
 
 # Technology Tools used
@@ -41,13 +42,13 @@ The url of the app on heroku is this one [https://freeonlinediary.herokuapp.com/
 
 This is the list of all routes as on the **heroku deployment**:
 
-* sign up [https://freeonlinediary.herokuapp.com/api/v1/auth/signup](https://freeonlinediary.herokuapp.com/api/v1/auth/signup)
-* sign in [https://freeonlinediary.herokuapp.com/api/v1/auth/signin](https://freeonlinediary.herokuapp.com/api/v1/auth/signin)
-* create session [https://freeonlinediary.herokuapp.com/api/v1/entries](https://freeonlinediary.herokuapp.com/api/v1/entries)
-* get all entries[https://freeonlinediary.herokuapp.com/api/v1/entries](https://free-mentorship.herokuapp.com/api/v1/entries)
-* specific entry[https://freeonlinediary.herokuapp.com/api/v1/entries/<:entry-id:>](https://freeonlinediary.herokuapp.com/api/v1/entries/<:entry-id:>)
-* delete an entry [https://freeonlinediary.herokuapp.com/api/v1/entries/<:entry-id:>](https://freeonlinediary.herokuapp.com/api/v1/entry/<:user-id:>)
-* update an entry [https://freeonlinediary.herokuapp.com/api/v1/entries/<:entry-id:>](https://freeonlinediary.herokuapp.com/api/v1/entry/<:user-id:>)
+* sign up [https://freeonlinediary.herokuapp.com/api/v2/auth/signup](https://freeonlinediary.herokuapp.com/api/v2/auth/signup)
+* sign in [https://freeonlinediary.herokuapp.com/api/v2/auth/signin](https://freeonlinediary.herokuapp.com/api/v2/auth/signin)
+* create session [https://freeonlinediary.herokuapp.com/api/v2/entries](https://freeonlinediary.herokuapp.com/api/v2/entries)
+* get all entries[https://freeonlinediary.herokuapp.com/api/v2/entries](https://free-mentorship.herokuapp.com/api/v2/entries)
+* specific entry[https://freeonlinediary.herokuapp.com/api/v2/entries/<:entry-id:>](https://freeonlinediary.herokuapp.com/api/v2/entries/<:entry-id:>)
+* delete an entry [https://freeonlinediary.herokuapp.com/api/v2/entries/<:entry-id:>](https://freeonlinediary.herokuapp.com/api/v1/entry/<:user-id:>)
+* update an entry [https://freeonlinediary.herokuapp.com/api/v2/entries/<:entry-id:>](https://freeonlinediary.herokuapp.com/api/v2/entry/<:user-id:>)
 
 For a better test you will need to use [POSTMAN](https://www.getpostman.com/)
 

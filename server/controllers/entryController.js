@@ -1,4 +1,3 @@
-import datetime from 'node-datetime';
 import grabEmployeeIdFromToken from '../helpers/tokenDecoder';
 import ResponseHandler from '../helpers/responseHandler';
 import {
