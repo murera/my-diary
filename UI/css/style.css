@@ -260,8 +260,7 @@ body{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
-	min-height: 80vh;
+	min-height: 95vh;
 	color: #fff;
 	color: black;
 	text-align: center;
@@ -1554,7 +1553,7 @@ color: wheat;
 margin-bottom: 15px;
 display: none;
 position: fixed;
-bottom: 20px;
+bottom: 30%;
 right: 0;
 text-align: center;
 
