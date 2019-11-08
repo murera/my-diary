@@ -5,14 +5,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class Database {
-	constructor() {
-		this.pool = new Pool({ connectionString: process.env.DATABASE_URL });
-		this.pool.on('connect', () => {
-			console.log('connected to the db');
+  constructor() {
+    this.pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    this.pool.on('connect', () => {
+      console.log('connected to the db');
 		  });
-		this.connect = async () => this.pool.connect();
-		this.initialize();
-	}
+    this.connect = async () => this.pool.connect();
+    this.initialize();
+  }
 
 	users = `CREATE TABLE IF NOT EXISTS users (
 		id serial PRIMARY KEY UNIQUE,
@@ -36,7 +36,6 @@ class Database {
 	  initialize = async () => {
 	  	await this.execute(this.users);
 	  	await this.execute(this.entries);
-	  	
 	  }
 
 	  async execute(sql, data = []) {
@@ -47,7 +46,7 @@ class Database {
 	  			return output.rows;
 			  }
 			  const output = await connection.query(sql);
-			  //console.log(output.rows);
+			  // console.log(output.rows);
 	  		return output.rows;
 	  	} catch (error) {
 	  		return error;
@@ -57,4 +56,4 @@ class Database {
 	  }
 }
 
-module.exports = new Database();
+export default new Database();
